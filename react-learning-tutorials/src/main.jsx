@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import App from './App.jsx';
+import App from './App.jsx';
 
 // eslint-disable-next-line react-refresh/only-export-components
 // const MyApp = () => {
@@ -41,6 +41,7 @@ import ReactDOM from 'react-dom/client';
 ReactDOM.createRoot(document.getElementById('root')).render(anotherElement); // Here first we are giving the html to the react's render method. we are trying to render the html using react. ReactDom.createRoot(document.getElementById('root')).render() will have its own implementation that is it will create its own abstract syntax tree with built-in notation. React will create a abstract syntax for us by using its built-in notation syntax, hence it will render the component/ function on UI because this is not our custom abstract syntax tree like before.
 */
 
+/*
 //! Deep knowledge: How react's built-in notation create the abstract syntax tree notation
 const thirdElementUsingReact = React.createElement(
   //* expected parameter based on react's notation to create the element is like: tagName,attribute{href, blank}, context_data
@@ -52,3 +53,7 @@ const thirdElementUsingReact = React.createElement(
 ReactDOM.createRoot(document.getElementById('root')).render(
   thirdElementUsingReact
 );
+
+*/
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
