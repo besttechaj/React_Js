@@ -1,16 +1,24 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
 import './App.css';
 
 function App() {
-  // const [count, setCount] = useState(0);
+  //* usState: It is a hook which is used to propagate the state inside your UI.
 
-  let counter = 10;
+  //* syntax: const [initialState, setInitialStateFunction_Name]= useState(default_value)
+  const [counter, setCounter] = useState(0);
 
   const addValue = () => {
-    counter += 1;
-    console.log(counter);
+    setCounter(counter + 1);
+    //! console will give you previous counter value.
+    console.log('counter_value: ', counter);
+  };
+
+  const removeValue = () => {
+    if (counter > 0) {
+      setCounter(counter - 1);
+    }
   };
 
   return (
@@ -18,7 +26,7 @@ function App() {
       <h1>Welcome to the counter App</h1>
       <h2>Current value is: {counter}</h2>
       <button onClick={addValue}>Increment</button>
-      <button>Decrement</button>
+      <button onClick={removeValue}>Decrement</button>
     </>
   );
 }
