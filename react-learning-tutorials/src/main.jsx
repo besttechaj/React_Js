@@ -38,22 +38,36 @@ import App from './App.jsx';
 // );
 
 /*
-ReactDOM.createRoot(document.getElementById('root')).render(anotherElement); // Here first we are giving the html to the react's render method. we are trying to render the html using react. ReactDom.createRoot(document.getElementById('root')).render() will have its own implementation that is it will create its own abstract syntax tree with built-in notation. React will create a abstract syntax for us by using its built-in notation syntax, hence it will render the component/ function on UI because this is not our custom abstract syntax tree like before.
+ReactDOM.createRoot(document.getElementById('root')).render(anotherElement); // Here first we are giving the html to the react's render method. we are trying to render the html using react.
+
+ReactDom.createRoot(document.getElementById('root')).render() will have its own implementation that is it will create its own abstract syntax tree with built-in notation. React will create a abstract syntax for us by using its built-in notation syntax, hence it will render the component/ function on UI because this is not our custom abstract syntax tree like before.
+
+  //* jsx helps you to write your html inside javascript whereas babel (transpiler) will convert you html code in abstract syntax tree.
+
+//* 
 */
 
-/*
 //! Deep knowledge: How react's built-in notation create the abstract syntax tree notation
+
+//? Inside JSX,you can't directly insert expression like if else loops etc. Because at the end react will convert your JSX into object to create the abstract syntax tree out of it. Hence you need to pass the variable inside jsx instead of expression.
+let javascript_variable = 'react tutorials'; // props
+
+//! React.createElement(): It is by default injected by babel ie. transpiler. Before we are designing custom abstract syntax tree but babel will create all of this for us.
+//* jsx helps you to write your html inside javascript whereas babel (transpiler) will convert you html code in abstract syntax tree.
+
 const thirdElementUsingReact = React.createElement(
-  //* expected parameter based on react's notation to create the element is like: tagName,attribute{href, blank}, context_data
+  //* expected parameter based on react's notation to create the element is like: tagName,attribute{href, blank}, context_data, and lastly javascript_variable injection
   'a',
   { href: 'facebook.com', target: '_blank' },
-  'Click me to visit facebook'
+  'Click me to visit facebook',
+  //! Evaluated expression: expression result or props
+  javascript_variable //* Inside JSX,you can't directly insert expression like if else loops etc. Because at the end react will convert your JSX into object to create the abstract syntax tree out of it. Hence you need to pass the variable inside jsx instead of expression.
 );
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   thirdElementUsingReact
 );
 
-*/
-
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+ReactDOM.createRoot(document.getElementById('root')).render(
+  thirdElementUsingReact
+);
