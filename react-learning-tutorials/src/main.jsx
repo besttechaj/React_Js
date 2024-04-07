@@ -71,3 +71,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 ReactDOM.createRoot(document.getElementById('root')).render(
   thirdElementUsingReact
 );
+
+//? Function of React.createRoot() :
+
+//* Behind the scene, it will create a dom(that is tree like structure) because it will compare your browser's dom and self's dom and update the changes only. Whereas your browser removes the whole dom and re-paints(re-creating web structure) it that is called as page re-loading. But using virtual dom you are updating the changes only by performing optimization(that is storing the re-usable/ unchanged components inside browser's cached storage).
