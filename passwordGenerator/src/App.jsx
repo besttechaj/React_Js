@@ -4,18 +4,28 @@ import './App.css';
 function App() {
   console.log('App component re-rendering');
 
-  //! useCallback Hook: It is a react hook that lets you cached a function definition between re-renders. Hence you are optimizing while re-rendering.
-  //* dependencies: If there any changes in the dependencies, it will run the function
-  //! syntax: useCallback( function, [ dependency array ] )
+  /*
+  // useCallback Hook
+  It is a react hook that lets you cached a function definition between re-renders. Hence you are optimizing while re-rendering.
 
-  const [length, setLength] = useState(4);
+  This allows us to isolate resource intensive functions so that they will not automatically run on every render.The useCallback Hook only runs when one of its dependencies update.It can improve performance.
+
+ //* dependencies: If there any changes in the dependencies, it will run the function
+  //? syntax: useCallback( function, [ dependency array ] )
+
+  //!Note: The useCallback and useMemo Hooks are similar. The main difference is that useMemo returns a memoized value and useCallback returns a memoized function
+
+  */
+
+  const [length, setLength] = useState(5);
   const [numberAllowed, setNumberAllowed] = useState(false);
   const [charAllowed, setCharAllowed] = useState(false);
   const [password, setPassword] = useState('');
 
+  //* for optimization: It will not run until there is any change of its dependencies. re-rendering can't run it without any change in callback hook's dependency.
   const generatePassword = useCallback(
     () => {
-      console.log('running call back function');
+      console.log('running callback hook');
       let pass = '';
 
       let str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -23,8 +33,6 @@ function App() {
       if (charAllowed) str += '!@#$&*?`~/_+-^';
 
       if (numberAllowed) str += '0123456789';
-
-      console.log('length is: ', length); // [default_value: 8]
 
       // iterating the str to get the random value
       for (let i = 1; i <= length; i++) {
