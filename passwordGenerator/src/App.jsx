@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import './App.css';
 
 function App() {
@@ -21,6 +21,26 @@ function App() {
   const [numberAllowed, setNumberAllowed] = useState(false);
   const [charAllowed, setCharAllowed] = useState(false);
   const [password, setPassword] = useState('');
+
+  //* useRef Hook: Used to get the reference.
+  let passwordRef = useRef(null); // default value is null
+
+  //* optimizing the function
+  const copyPasswordToClipboard = useCallback(() => {
+    //! To target the element we are using useRef hook instead of password because password is a state not an element hence we are providing one reference to the password input element to manipulate some changes. By taking reference we can easily use some built-in methods to manipulate it.
+
+    console.log(passwordRef.current); // current selected element
+
+    // if there is any element present inside passwordRef then call the select() method to select the text inside that element( hence we are achieving text highlight)
+    passwordRef.current?.select();
+
+    //* to get the selected range [ in future if there is a need]
+    // passwordRef.current?.setSelectionRange(0, 3);
+
+    //! window, navigator, clipboard is an object in javascript
+    //! clipboard.writeText(element_reference): to write to the clipboard
+    window.navigator.clipboard.writeText(password);
+  }, [password]);
 
   //* for optimization: It will not run until there is any change of its dependencies. re-rendering can't run it without any change in callback hook's dependency.
   const generatePassword = useCallback(
@@ -49,6 +69,7 @@ function App() {
 
   //* useEffect: This hook is used to synchronize a component with the external system.
   //* syntax: useEffect( callback fn, [ dependency array ] )
+  //* useEffect will run during the first rendering of the component but once after it will run if there is any change in its dependency.
   useEffect(() => {
     generatePassword();
   }, [length, numberAllowed, charAllowed, generatePassword]);
@@ -62,10 +83,10 @@ function App() {
           className='outline-none w-full py-1 px-3'
           placeholder='Password'
           readOnly
-          // ref={passwordRef}
+          ref={passwordRef}
         />
         <button
-          // onClick={copyPasswordToClipboard}
+          onClick={copyPasswordToClipboard}
           className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0'
         >
           copy
