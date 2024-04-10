@@ -18,4 +18,6 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
-}
+  //! disabling unwanted props not present message
+  // 'react/prop-types': 'off',
+};

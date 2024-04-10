@@ -1,27 +1,22 @@
+/* eslint-disable react/prop-types */
 import { useId } from 'react';
 
-const InputBox = ({
-  // from or to
-  label,
-  // currency amount
-  amount,
-  // amount change
-  onAmountChange,
-  // changing the currency
-  onCurrencyChange,
-  // types of currency list
-  currencyOptions = [],
-  // default currency value
-  selectCurrency = 'USD',
-  //* amountDisable = false,
-  //* currencyDisable = false,
-  className = '',
-}) => {
+const InputBox = (
+  //! performing destructuring
+  {
+    label,
+    amount,
+    onAmountChange,
+    onCurrencyChange,
+    currencyOptions = [],
+    selectCurrency = 'USD',
+  }
+) => {
   // always generate the unique id for each component/value
   const amountInputId = useId();
 
   return (
-    <div className={`bg-white p-3 rounded-lg text-sm flex ${className}`}>
+    <div className={`bg-white p-3 rounded-lg text-sm flex`}>
       <div className='w-1/2'>
         <label
           // For every label, it will generate the unique id
@@ -36,14 +31,11 @@ const InputBox = ({
           id={amountInputId}
           className='outline-none w-full bg-transparent py-1.5'
           type='number'
-          placeholder='Amount'
-          // by default the amount field is disable
-          //* disabled={amountDisable}
+          placeholder='Enter Amount'
           value={amount}
-          onChange={(e) =>
-            //* onAmountChange &&
-            onAmountChange(Number(e.target.value))
-          }
+          onChange={(amt) => {
+            return onAmountChange(amt.target.value);
+          }}
         />
       </div>
       <div className='w-1/2 flex flex-wrap justify-end text-right'>
@@ -51,19 +43,16 @@ const InputBox = ({
         <select
           className='rounded-lg px-1 py-1 bg-gray-100 cursor-pointer outline-none text-black'
           value={selectCurrency}
-          onChange={(e) =>
-            //* onCurrencyChange &&
-            onCurrencyChange(e.target.value)
-          }
-          //* disabled={currencyDisable}
+          onChange={(e) => {
+            return onCurrencyChange(e.target.value);
+          }}
         >
-          {currencyOptions.map((currency) => {
-            console.log(currency),
-              (
-                <option key={currency} value={currency}>
-                  {currency}
-                </option>
-              );
+          {currencyOptions.map((ele) => {
+            return (
+              <option key={ele} value={ele}>
+                {ele}
+              </option>
+            );
           })}
         </select>
       </div>
