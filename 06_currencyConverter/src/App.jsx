@@ -5,8 +5,6 @@ import useCurrencyInfo from './hooks/useCurrencyInfo';
 import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   const [amount, setAmount] = useState(0);
 
   //default currency converter

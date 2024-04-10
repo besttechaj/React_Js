@@ -13,8 +13,8 @@ const InputBox = ({
   currencyOptions = [],
   // default currency value
   selectCurrency = 'USD',
-  amountDisable = false,
-  currencyDisable = false,
+  //* amountDisable = false,
+  //* currencyDisable = false,
   className = '',
 }) => {
   // always generate the unique id for each component/value
@@ -38,10 +38,11 @@ const InputBox = ({
           type='number'
           placeholder='Amount'
           // by default the amount field is disable
-          disabled={amountDisable}
+          //* disabled={amountDisable}
           value={amount}
           onChange={(e) =>
-            onAmountChange && onAmountChange(Number(e.target.value))
+            //* onAmountChange &&
+            onAmountChange(Number(e.target.value))
           }
         />
       </div>
@@ -50,8 +51,11 @@ const InputBox = ({
         <select
           className='rounded-lg px-1 py-1 bg-gray-100 cursor-pointer outline-none text-black'
           value={selectCurrency}
-          onChange={(e) => onCurrencyChange && onCurrencyChange(e.target.value)}
-          disabled={currencyDisable}
+          onChange={(e) =>
+            //* onCurrencyChange &&
+            onCurrencyChange(e.target.value)
+          }
+          //* disabled={currencyDisable}
         >
           {currencyOptions.map((currency) => {
             console.log(currency),
