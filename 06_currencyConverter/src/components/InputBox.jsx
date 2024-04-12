@@ -7,9 +7,14 @@ const InputBox = (
     label,
     amount,
     onAmountChange,
+    // to change the currency [dynamic field]
     onCurrencyChange,
+    // by default it is empty if no select option is present [ static field]
     currencyOptions = [],
+    // default currency state
     selectCurrency = 'USD',
+    amountDisable = false,
+    currencyDisable = false,
   }
 ) => {
   // always generate the unique id for each component/value
@@ -30,12 +35,15 @@ const InputBox = (
           // For every input, it will generate the unique id but same as above label code because both the linked.
           id={amountInputId}
           className='outline-none w-full bg-transparent py-1.5'
+          //* only accept Number datatype
           type='number'
           placeholder='Enter Amount'
           value={amount}
-          onChange={(amt) => {
-            return onAmountChange(amt.target.value);
+          onChange={(e) => {
+            //* if onAmountChange exist then use callback function else do nothing. In this way you save your application from getting crashed and hence you don't have to debug your code.
+            onAmountChange && onAmountChange(Number(e.target.value));
           }}
+          disabled={amountDisable}
         />
       </div>
       <div className='w-1/2 flex flex-wrap justify-end text-right'>
@@ -43,17 +51,17 @@ const InputBox = (
         <select
           className='rounded-lg px-1 py-1 bg-gray-100 cursor-pointer outline-none text-black'
           value={selectCurrency}
-          onChange={(e) => {
-            return onCurrencyChange(e.target.value);
-          }}
+          onChange={(e) =>
+            //* if onAmountChange exist then use callback function else do nothing. In this way you save your application from getting crashed and hence you don't have to debug your code.
+            onCurrencyChange && onCurrencyChange(e.target.value)
+          }
+          disabled={currencyDisable}
         >
-          {currencyOptions.map((ele) => {
-            return (
-              <option key={ele} value={ele}>
-                {ele}
-              </option>
-            );
-          })}
+          {currencyOptions.map((ele) => (
+            <option key={ele} value={ele}>
+              {ele}
+            </option>
+          ))}
         </select>
       </div>
     </div>

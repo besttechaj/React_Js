@@ -8,10 +8,10 @@ function App() {
   // main amount
   const [amount, setAmount] = useState(0);
 
-  //default currency converter
+  // current currency "from"
   const [From, setFrom] = useState('USD');
 
-  // default currency converter
+  // current current currency "to"
   const [to, setTo] = useState('INR');
 
   // state for converted amount
@@ -54,10 +54,10 @@ function App() {
           >
             <div className='w-full mb-1'>
               <InputBox
-                label='From'
+                label='from'
                 amount={amount}
                 currencyOptions={options}
-                onCurrencyChange={(currency) => setAmount(amount)}
+                onCurrencyChange={(currency) => setFrom(amount)}
                 selectCurrency={From}
                 onAmountChange={(amount) => setAmount(amount)}
               />
@@ -73,11 +73,13 @@ function App() {
             </div>
             <div className='w-full mt-1 mb-4'>
               <InputBox
-                label='To'
+                label='to'
                 amount={convertedAmount}
                 currencyOptions={options}
                 onCurrencyChange={(currency) => setTo(currency)}
-                selectCurrency={From}
+                selectCurrency={to}
+                //* amount disabled is true
+                amountDisable
               />
             </div>
             <button
