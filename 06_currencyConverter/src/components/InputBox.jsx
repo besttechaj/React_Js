@@ -15,6 +15,8 @@ const InputBox = (
     selectCurrency = 'USD',
     amountDisable = false,
     currencyDisable = false,
+
+    //* currency update
   }
 ) => {
   // always generate the unique id for each component/value
@@ -28,15 +30,13 @@ const InputBox = (
           htmlFor={amountInputId}
           className='text-black/40 mb-2 inline-block'
         >
-          {/* from or to */}
           {label}
         </label>
         <input
           // For every input, it will generate the unique id but same as above label code because both the linked.
           id={amountInputId}
           className='outline-none w-full bg-transparent py-1.5'
-          //* only accept Number datatype
-          type='number'
+          type='text'
           placeholder='Enter Amount'
           value={amount}
           onChange={(e) => {
@@ -51,10 +51,12 @@ const InputBox = (
         <select
           className='rounded-lg px-1 py-1 bg-gray-100 cursor-pointer outline-none text-black'
           value={selectCurrency}
-          onChange={(e) =>
+          onChange={(e) => {
+            console.log(e.target.value);
+
             //* if onAmountChange exist then use callback function else do nothing. In this way you save your application from getting crashed and hence you don't have to debug your code.
-            onCurrencyChange && onCurrencyChange(e.target.value)
-          }
+            return onCurrencyChange && onCurrencyChange(e.target.value);
+          }}
           disabled={currencyDisable}
         >
           {currencyOptions.map((ele) => (

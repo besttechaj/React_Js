@@ -9,15 +9,16 @@ function App() {
   const [amount, setAmount] = useState(0);
 
   // current currency "from"
-  const [From, setFrom] = useState('USD');
+  const [From, setFrom] = useState('INR');
 
   // current current currency "to"
-  const [to, setTo] = useState('INR');
+  const [to, setTo] = useState('USD');
 
   // state for converted amount
-  const [convertedAmount, setConvertedAmount] = useState(0);
+  const [convertedAmount, setConvertedAmount] = useState(10);
 
   //? How to use hook?
+  console.log(From);
   const currencyInfo = useCurrencyInfo(From);
 
   //! fetching all the keys from the data source i.e., unit
@@ -25,6 +26,8 @@ function App() {
 
   //! logic to convert the currency
   const convert = () => {
+    console.log(amount);
+    console.log(currencyInfo[to]);
     setConvertedAmount(amount * currencyInfo[to]);
   };
 
@@ -56,8 +59,9 @@ function App() {
               <InputBox
                 label='from'
                 amount={amount}
+                // setAmount={amount}
                 currencyOptions={options}
-                onCurrencyChange={(currency) => setFrom(amount)}
+                onCurrencyChange={(currency) => setFrom(currency)}
                 selectCurrency={From}
                 onAmountChange={(amount) => setAmount(amount)}
               />
@@ -87,6 +91,9 @@ function App() {
               className='w-full bg-blue-600 text-white px-4 py-3 rounded-lg'
             >
               Convert
+            </button>
+            <button className='w-full bg-blue-600 text-white px-4 py-3 mt-2 rounded-lg'>
+              reset
             </button>
           </form>
         </div>
