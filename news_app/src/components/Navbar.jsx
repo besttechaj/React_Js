@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 
 export default class componentName extends Component {
   render() {
+    console.log('rendering Navbar component');
     return (
       <>
         <nav className='navbar navbar-expand-lg bg-body-tertiary'>
           <div className='container-fluid'>
             <a className='navbar-brand' href='/'>
-              Navbar
+              News Web App
             </a>
             <button
               className='navbar-toggler'
