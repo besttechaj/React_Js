@@ -5,7 +5,7 @@ export default class componentName extends Component {
     console.log('rendering Navbar component');
     return (
       <>
-        <nav className='navbar navbar-expand-lg bg-body-tertiary'>
+        <nav className='navbar navbar-expand-sm bg-body-tertiary navbar-dark bg-dark'>
           <div className='container-fluid'>
             <a className='navbar-brand' href='/'>
               News Web App
