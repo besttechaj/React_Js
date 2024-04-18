@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NewsItem from './NewsItem';
+import Spinner from './Spinner';
 
 export default class News extends Component {
   // calling the constructor to set the state
@@ -18,7 +19,8 @@ export default class News extends Component {
   //* constructor run < render run < componentDidMount
   async componentDidMount() {
     console.log('running componentDidMount');
-    let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=2f32ace7c69f44e48c5ffa0aa2529b62&page=${this.page}&pageSize=15`;
+    let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=2f32ace7c69f44e48c5ffa0aa2529b62&page=${this.page}&pageSize=${this.props.pageSize}`;
+    this.setState({ loading: true });
 
     let result = await fetch(url);
     console.log(result);
@@ -28,6 +30,7 @@ export default class News extends Component {
     this.setState({
       articles: parsedData.articles,
       totalResults: parsedData.totalResults,
+      loading: false,
     });
   }
 
@@ -36,16 +39,25 @@ export default class News extends Component {
     console.log('previous click');
     let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=2f32ace7c69f44e48c5ffa0aa2529b62&page=${
       this.state.page - 1
-    }&pageSize=15`;
+    }&pageSize=${this.props.pageSize}`;
+    this.setState({ loading: true });
+
     let result = await fetch(url);
     let parsedData = await result.json();
     console.log(parsedData);
-    this.setState({ page: this.state.page - 1, articles: parsedData.articles });
+    this.setState({
+      page: this.state.page - 1,
+      articles: parsedData.articles,
+      loading: false,
+    });
   };
 
   //! handle next button
   handleNextClick = async () => {
-    if (this.state.page + 1 > Math.ceil(this.state.totalResults / 15)) {
+    if (
+      this.state.page + 1 >
+      Math.ceil(this.state.totalResults / this.props.pageSize)
+    ) {
       console.log('do nothing');
       // do nothing
     } else {
@@ -53,16 +65,21 @@ export default class News extends Component {
       console.log('page is: ', this.state.page);
       let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=2f32ace7c69f44e48c5ffa0aa2529b62&page=${
         this.state.page + 1
-      }&pageSize=15`;
+      }&pageSize=${this.props.pageSize}`;
+      this.setState({ loading: true });
       let result = await fetch(url);
       let parsedData = await result.json();
       console.log(parsedData);
       this.setState({
         page: this.state.page + 1,
         articles: parsedData.articles,
+        loading: false,
       });
       console.log('current page: ', this.state.page);
-      console.log('page status: ', Math.ceil(this.state.totalResults / 15));
+      console.log(
+        'page status: ',
+        Math.ceil(this.state.totalResults / this.props.pageSize)
+      );
     }
   };
 
@@ -71,28 +88,32 @@ export default class News extends Component {
 
     return (
       <div className='container my-3'>
-        <h1>Top - Headlines</h1>
+        <h1 className='text-center'>Top - Headlines</h1>
+        {this.state.loading && <Spinner />}
         <div className='row'>
-          {this.state.articles.map((ele) => {
-            return (
-              <div className='col-md-4' key={ele.url}>
-                <NewsItem
-                  title={ele.title ? ele.title.slice(0, 40) : 'unknown author'}
-                  description={
-                    ele.description
-                      ? ele.description.slice(0, 60)
-                      : 'no description'
-                  }
-                  imageUrl={
-                    ele.urlToImage
-                      ? ele.urlToImage
-                      : 'https://t3.ftcdn.net/jpg/07/33/52/42/240_F_733524215_oWMzMDWYTFKowRLygU2orJXLqFdLFIoq.jpg'
-                  }
-                  newsUrl={ele.url}
-                />
-              </div>
-            );
-          })}
+          {!this.state.loading &&
+            this.state.articles.map((ele) => {
+              return (
+                <div className='col-md-4' key={ele.url}>
+                  <NewsItem
+                    title={
+                      ele.title ? ele.title.slice(0, 40) : 'unknown author'
+                    }
+                    description={
+                      ele.description
+                        ? ele.description.slice(0, 60)
+                        : 'no description'
+                    }
+                    imageUrl={
+                      ele.urlToImage
+                        ? ele.urlToImage
+                        : 'https://t3.ftcdn.net/jpg/07/33/52/42/240_F_733524215_oWMzMDWYTFKowRLygU2orJXLqFdLFIoq.jpg'
+                    }
+                    newsUrl={ele.url}
+                  />
+                </div>
+              );
+            })}
         </div>
         <div className='container d-flex justify-content-between'>
           <button
@@ -107,6 +128,10 @@ export default class News extends Component {
             type='button'
             className='btn btn-dark'
             onClick={this.handleNextClick}
+            disabled={
+              this.state.page + 1 >
+              Math.ceil(this.state.totalResults / this.props.pageSize)
+            }
           >
             Next
           </button>
