@@ -19,6 +19,7 @@
 .newsItem_outer > .card_body {
   display: flex;
   flex-direction: column;
+  padding: 0.3rem;
 }
 
 .newsItem_outer > .card_body > h6 {
