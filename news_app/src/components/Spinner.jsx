@@ -1,11 +1,9 @@
 import React from 'react';
-
+import './Spinner.css';
 function Spinner() {
   return (
-    <div className='d-flex justify-content-center'>
-      <div className='spinner-border' role='status'>
-        <span className='sr-only text-center'>Loading...</span>
-      </div>
+    <div className='spinner'>
+      <div className='loader'></div>
     </div>
   );
 }

@@ -1,0 +1,45 @@
+.container {
+  border: 3px solid black;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.container > h1 {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #0f1111;
+  margin-bottom: 0.5rem;
+}
+
+.container > .container1 {
+  border: 3px solid rgb(198, 13, 13);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 0.5rem;
+}
+
+.container > .container1 > .container1_a {
+  width: 30%;
+  border: 2px solid rgb(83, 21, 218);
+  margin-bottom: 1rem;
+  /* height: 300px; */
+}
+
+.container > .container2 {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.container > .container2 > button {
+  text-align: center;
+  background-color: #ffd814;
+  font-size: 0.8rem;
+  border-radius: 10px;
+  border: none;
+  padding: 0.2rem;
+  cursor: pointer;
+}

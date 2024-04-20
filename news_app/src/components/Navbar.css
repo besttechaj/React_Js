@@ -1,0 +1,36 @@
+.nav_outer {
+  background-color: #1f2424;
+  padding: 1rem 0;
+}
+
+.nav_outer > .nav_inner {
+  display: flex;
+  align-items: center;
+  width: 95%;
+  margin: auto;
+}
+
+.nav_inner > #nav_inner1 {
+  width: 20%;
+}
+
+.nav_inner > #nav_inner1 > #app_name {
+  color: #ffffff;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.nav_inner > #nav_inner2 {
+  width: 80%;
+}
+
+.nav_inner > #nav_inner2 > ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.nav_inner > #nav_inner2 > ul > li > a {
+  color: #ffffff;
+  text-decoration: none;
+}

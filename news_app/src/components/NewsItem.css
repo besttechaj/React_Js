@@ -1,0 +1,19 @@
+
+
+.newsItem_outer {
+  background-color: orange;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.newsItem_outer > .card_img {
+  width: 100%;
+}
+
+.newsItem_outer > .card_img > img {
+  width: 100%;
+  height: 100%;
+}
+
+.newsItem_outer > .card_body {
+}

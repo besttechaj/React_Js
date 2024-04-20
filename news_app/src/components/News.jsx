@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NewsItem from './NewsItem';
 import Spinner from './Spinner';
 import PropTypes from 'prop-types';
+import './News.css';
 
 export default class News extends Component {
   // default props's value
@@ -110,14 +111,14 @@ export default class News extends Component {
     console.log('rendering News component');
 
     return (
-      <div className='container my-3'>
-        <h1 className='text-center'>Top - Headlines</h1>
+      <div className='container'>
+        <h1>Top - Headlines</h1>
         {this.state.loading && <Spinner />}
-        <div className='row'>
+        <div className='container1'>
           {!this.state.loading &&
             this.state.articles.map((ele) => {
               return (
-                <div className='col-md-4' key={ele.url}>
+                <div className='container1_a' key={ele.url}>
                   <NewsItem
                     title={
                       ele.title ? ele.title.slice(0, 40) : 'unknown author'
@@ -138,7 +139,7 @@ export default class News extends Component {
               );
             })}
         </div>
-        <div className='container d-flex justify-content-between'>
+        <div className='container2'>
           <button
             type='button'
             className='btn btn-dark'
