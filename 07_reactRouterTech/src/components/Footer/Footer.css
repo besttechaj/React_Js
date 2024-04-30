@@ -8,30 +8,32 @@
   font-family: 'Open Sans', sans-serif;
 }
 .footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
-  background: #10182f;
+  /* background: #10182f; */
   border-radius: 6px;
-  padding: 0.6rem;
+  padding: 0.3rem;
 }
+
 .footer .footer-row {
   background-color: green;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 0.3rem;
+  /* gap: 1rem; */
+  /* padding: 0.3rem; */
 }
+
 .footer-row .footer-col h4 {
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 200;
   margin-top: 0;
   margin-bottom: 0.2rem;
 }
 .footer-col .links {
-  margin-top: 3px;
+  /* margin-top: 3px; */
   margin-bottom: 0;
 }
 .footer-col .links li {
@@ -41,6 +43,7 @@
 .footer-col .links li a {
   text-decoration: none;
   color: #bfbfbf;
+  font-size: 0.8rem;
 }
 .footer-col .links li a:hover {
   color: #fff;
@@ -50,31 +53,31 @@
   color: #bfbfbf;
 }
 .footer-col form {
-  display: flex;
-  gap: 3px;
-}
-.footer-col input {
-  height: 30px;
-  border-radius: 6px;
-  background: none;
   width: 100%;
-  outline: none;
-  border: 1px solid #7489c6;
-  caret-color: #fff;
-  color: #fff;
-  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid blue;
+  margin: auto;
 }
+.footer-col > form > input {
+  height: 0.2rem;
+  width: 30%;
+  margin: 0;
+}
+
 .footer-col input::placeholder {
-  color: #ccc;
+  color: #c0bcbc;
 }
-.footer-col form button {
-  background: #fff;
-  outline: none;
+
+.footer-col > form > button {
+  background: #f65d5d;
   border: none;
-  padding: 5px 10px;
-  border-radius: 6px;
+  height: 2rem;
   cursor: pointer;
-  font-weight: 300;
+  width: 40%;
+  margin: 0;
+  padding: 0;
 }
 .footer-col form button:hover {
   background: #cecccc;

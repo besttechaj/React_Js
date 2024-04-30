@@ -11,7 +11,7 @@ import LogIn from './components/LogIn/LogIn.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
 
 const router = createBrowserRouter([
-  {6 511111
+  {
     path: '/',
     element: <Layout />,
     //! we are passing some components inside our layout as children so that we can dynamically display the component without passing component one to another.
