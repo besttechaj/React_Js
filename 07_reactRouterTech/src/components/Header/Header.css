@@ -4,10 +4,12 @@
 }
 
 .nav_outer > .nav_inner {
+  /* border: 2px solid red; */
   display: flex;
+  /* justify-content: space-evenly; */
   align-items: center;
-  width: 95%;
-  margin: auto;
+  /* width: 95%; */
+  /* margin: auto; */
 }
 
 .nav_inner > #nav_inner1 {
@@ -17,18 +19,18 @@
 
 .nav_inner > #nav_inner1 > #app_name {
   color: #ffffff;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   text-decoration: none;
 }
 
 .nav_inner > #nav_inner2 {
-  width: 70%;
+  width: 60%;
   /* border: 2px solid blue; */
 }
 
 .nav_inner > #nav_inner2 > ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   list-style: none;
 }
 
@@ -47,14 +49,17 @@
 }
 
 .nav_inner3 > button {
+  width: 30%;
   font-size: 0.8rem;
-  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1rem;
   border: none;
   border-radius: 5px;
   background-color: red;
   color: white;
   cursor: pointer;
-  width: 32%;
 }
 
 .active {
