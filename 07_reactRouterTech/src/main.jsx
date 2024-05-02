@@ -14,7 +14,8 @@ import Contact from './components/ContactUs/Contact.jsx';
 import LogIn from './components/LogIn/LogIn.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
 import User from './components/User/User.jsx';
-import Github from './components/Github/Github.jsx';
+import Github, { githubInfoLoader } from './components/Github/Github.jsx';
+import PageNotFound from './components/PageNotFound/PageNotFound.jsx';
 
 // //! way 1: defining routes : performing nested routing
 // const router = createBrowserRouter([
@@ -59,7 +60,13 @@ const router = createBrowserRouter(
 
       {/* fetching the path_id using params */}
       <Route path='user/:id' element={<User />} />
-      <Route path='github' element={<Github />} />
+      <Route
+        path='github'
+        //! "loader: property" helps you to dynamically fetch the data through the api. Whenever you hit the link your loader will fetch the data from the api and store it inside cached memory and all this process will execute before useEffect() run or A loader in react-router is a function that is used to fetch data for a route before it is rendered
+        loader={githubInfoLoader}
+        element={<Github />}
+      />
+      <Route path='*' element={<PageNotFound />} />
     </Route>
   )
 );
