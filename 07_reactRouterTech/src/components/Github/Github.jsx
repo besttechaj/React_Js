@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 function Github() {
