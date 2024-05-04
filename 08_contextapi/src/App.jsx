@@ -1,10 +1,17 @@
 import React from 'react';
 import { UserContextProvider } from './context/UserContextProvider';
-import Card from './components/Card';
+import Login from './components/Login';
+import Profile from './components/Profile';
 export default function App() {
   return (
-    <UserContextProvider>
-      <Card />
-    </UserContextProvider>
+    <>
+      <h1>Introduction to context Api</h1>
+      <UserContextProvider>
+        <Login />
+        <br />
+        <br />
+        <Profile />
+      </UserContextProvider>
+    </>
   );
 }
