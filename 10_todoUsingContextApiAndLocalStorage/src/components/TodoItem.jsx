@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './TodoItem.css';
 import { useTodo } from '../contexts';
 export default function TodoItem({ todo }) {
-  console.log(todo);
   //* step3: fetching the data from the context
   let { updateTodo, deleteTodo, toggleComplete } = useTodo();
 
@@ -17,7 +16,7 @@ export default function TodoItem({ todo }) {
   };
 
   //* editing the toggle
-  const toggleFunction = () => {1 0666
+  const toggleFunction = () => {
     toggleComplete(todo.id);
   };
 
@@ -54,7 +53,14 @@ export default function TodoItem({ todo }) {
           {isEditable ? '📁' : '✏️'}
         </button>
         {/* Delete Todo Button */}
-        <button className='buttonTwo' onClick={() => deleteTodo(todo.id)}>
+        <button
+          className='buttonTwo'
+          onClick={() => {
+            console.log(todo.id);
+            console.log(todo);
+            return deleteTodo(todo.id);
+          }}
+        >
           ❌
         </button>
       </div>

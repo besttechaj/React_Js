@@ -15,6 +15,7 @@ export default function TodoForm() {
 
     if (!note) return;
     addTodo({ todo: note, completed: false });
+
     setNote('');
   };
   return (
