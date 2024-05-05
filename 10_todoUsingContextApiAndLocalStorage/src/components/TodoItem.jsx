@@ -17,7 +17,7 @@ export default function TodoItem({ todo }) {
   };
 
   //* editing the toggle
-  const toggleFunction = () => {1 066
+  const toggleFunction = () => {1 0666
     toggleComplete(todo.id);
   };
 
