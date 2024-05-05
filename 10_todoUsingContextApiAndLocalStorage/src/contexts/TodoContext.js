@@ -8,16 +8,6 @@ export const TodoContext = createContext({
       todo: 'first message',
       completed: false,
     },
-    {
-      id: 2,
-      todo: 'second message',
-      completed: false,
-    },
-    {
-      id: 3,
-      todo: 'third message',
-      completed: false,
-    },
   ],
   // to add a new todo
   addTodo: (todo) => {},

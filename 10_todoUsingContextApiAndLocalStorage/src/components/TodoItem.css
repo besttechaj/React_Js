@@ -1,0 +1,33 @@
+.container2 {
+  border: 2px solid red;
+  width: 60%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.container2 > .inputOne {
+  font-size: 1rem;
+  width: 5%;
+  height: 2rem;
+  cursor: pointer;
+}
+
+.container2 > .inputTwo {
+  width: 60%;
+  cursor: pointer;
+  height: 2rem;
+}
+
+.container2 > .buttonOne {
+  width: 15%;
+  cursor: pointer;
+  height: 2rem;
+}
+.container2 > .buttonTwo {
+  width: 5%;
+  cursor: pointer;
+  height: 2rem;
+}

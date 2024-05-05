@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { TodoProvider } from './contexts';
+import { TodoForm, TodoItem } from './components';
+import './App.css';
 export default function App() {
   const [todos, setTodos] = useState([]);
 
@@ -46,6 +48,7 @@ export default function App() {
   //* declaring use Effect to fetch all the values from local storage
   useEffect(() => {
     console.log('running useEffect-1');
+    // converting it to normal javascript object
     const todos = JSON.parse(localStorage.getItem('todos'));
     console.log('fetching local storage: ', todos);
 
@@ -58,6 +61,7 @@ export default function App() {
   //* declaring use Effect to set  the values inside local storage
   useEffect(() => {
     console.log('running useEffect-2');
+    // converting to string before sending
     localStorage.setItem('todos', JSON.stringify(todos));
     console.log('sending items to local storage: ', todos);
   }, [todos]);
@@ -66,7 +70,12 @@ export default function App() {
     <TodoProvider
       value={{ todos, addTodo, updateTodo, deleteTodo, toggleComplete }}
     >
-      App component
+      <h1>Welcome to your Sticky Notes</h1>
+      <br />
+      <TodoForm />
+      {todos.map((ele) => {
+        return <TodoItem todo={ele} key={ele.id} />;
+      })}
     </TodoProvider>
   );
 }
