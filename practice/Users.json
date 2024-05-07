@@ -1,0 +1,25 @@
+{
+  "Users": [
+    {
+      "id": "1",
+      "name": "abc",
+      "email": "abc@gmail.com",
+      "phone": "1235678999",
+      "password": "abcdefgh"
+    },
+    {
+      "id": "2",
+      "name": "vivek",
+      "email": "vivek@gmail.com",
+      "phone": "1235000999",
+      "password": "dasdds"
+    },
+    {
+      "id": "3",
+      "name": "neha",
+      "email": "neha@gmail.com",
+      "phone": "1333678999",
+      "password": "dasdcdefgh"
+    }
+  ]
+}
