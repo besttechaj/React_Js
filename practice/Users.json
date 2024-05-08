@@ -2,17 +2,17 @@
   "Users": [
     {
       "id": "1",
-      "name": "abc",
+      "name": "abc2222",
       "email": "abc@gmail.com",
       "phone": "1235678999",
       "password": "abcdefgh"
     },
     {
       "id": "2",
-      "name": "vivek",
-      "email": "vivek@gmail.com",
-      "phone": "1235000999",
-      "password": "dasdds"
+      "name": "vivek sharma",
+      "email": "vivekSharma@gmail.com",
+      "phone": "11111111111",
+      "password": "dasddssharma"
     },
     {
       "id": "3",
@@ -41,27 +41,6 @@
       "email": "bhajiya@gmail.com",
       "phone": "8888888888",
       "password": "bhajiya123"
-    },
-    {
-      "id": "5bc8",
-      "name": "",
-      "email": "",
-      "phone": "",
-      "password": ""
-    },
-    {
-      "id": "df92",
-      "name": "",
-      "email": "",
-      "phone": "",
-      "password": ""
-    },
-    {
-      "id": "de9e",
-      "name": "",
-      "email": "",
-      "phone": "",
-      "password": ""
     }
   ]
 }

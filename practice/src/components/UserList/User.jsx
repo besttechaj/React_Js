@@ -11,14 +11,14 @@ export default function User() {
     //! axios.get(): to fetch the data from the url. axios.get() will take one parameter that is url. Axios will return Promise object.
     axios.get(`http://localhost:3000/Users`).then(
       (d) => {
-        console.log(d);
+        // console.log(d);
         setInformation(d.data);
       },
       (e) => console.log(e)
     );
   }, []);
 
-  console.log(information);
+  // console.log(information);
 
   //! destructuring data fetched from the useEffect
 
@@ -49,7 +49,6 @@ export default function User() {
                     <td>{email}</td>
                     <td>{password}</td>
                     <td>
-                      {' '}
                       <Link to={`/update/${id}`}>UPDATE</Link>
                       <Link to={`/read/${id}`}>READ</Link>
                       <Link>DELETE</Link>
