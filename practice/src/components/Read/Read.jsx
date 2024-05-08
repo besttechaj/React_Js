@@ -8,7 +8,7 @@ export default function Read() {
 
   let [details, setDetails] = useState({});
 
-  //! Using the dynamic routing (eg id), we are redirected to the update component. Now to fetch the data for the particular user we have to first target the url's endpoint id and using id we can fetch the data from axios.get(): to get the the user's details. Hence to get the endpoint we have a method inside 'react-router-dom package' known as "useParams". This method will not take any argument. The return type of useParam hook is an object.
+  //! Using the dynamic routing (eg id), we are redirected to the Read component. Now to fetch the data for the particular user we have to first target the url's endpoint id and using id we can fetch the data from axios.get(): to get the the user's details. Hence to get the endpoint we have a method inside 'react-router-dom package' known as "useParams". This method will not take any argument. The return type of useParam hook is an object.
   //! destructuring object to get the required id
   let { id } = useParams();
   console.log(id);

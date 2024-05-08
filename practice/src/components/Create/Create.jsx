@@ -24,7 +24,7 @@ export default function Create() {
     e.preventDefault();
     console.log(user_info);
 
-    //! After submitting the form we want to send the data to the data base, hence we have a method inside axios that is axios.post(). post() will take 2 parameters which are "url" and "data" (Please Note while sending the data to the database, the identifier should have the same that you have in database). axios.post() will return one promise hence we have to handle it.
+    //!  After submitting the form we want to send the newly created data to the database, hence we have a method inside axios that is axios.post(). post() will take 3 parameters which are "url" and "data" (Please Note while sending the data to the database, the identifier should have the same that you have in database) and config (for custom configurations like authorization, content-type, data format ant many more). axios.post() will return one promise hence we have to handle it.
 
     axios.post(`http://localhost:3000/Users`, user_info).then(
       (d) => console.log(d),
