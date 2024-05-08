@@ -20,6 +20,48 @@
       "email": "neha@gmail.com",
       "phone": "1333678999",
       "password": "dasdcdefgh"
+    },
+    {
+      "id": "0573",
+      "name": "surya kumar yadav",
+      "email": "surya@gmail.com",
+      "phone": "1234567890",
+      "password": "surya@123"
+    },
+    {
+      "id": "8dba",
+      "name": "surya kumar yadav",
+      "email": "surya@gmail.com",
+      "phone": "1234567890",
+      "password": "surya@123"
+    },
+    {
+      "id": "fa17",
+      "name": "bhajiya ",
+      "email": "bhajiya@gmail.com",
+      "phone": "8888888888",
+      "password": "bhajiya123"
+    },
+    {
+      "id": "5bc8",
+      "name": "",
+      "email": "",
+      "phone": "",
+      "password": ""
+    },
+    {
+      "id": "df92",
+      "name": "",
+      "email": "",
+      "phone": "",
+      "password": ""
+    },
+    {
+      "id": "de9e",
+      "name": "",
+      "email": "",
+      "phone": "",
+      "password": ""
     }
   ]
 }
