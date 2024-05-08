@@ -51,7 +51,23 @@ export default function User() {
                     <td>
                       <Link to={`/update/${id}`}>UPDATE</Link>
                       <Link to={`/read/${id}`}>READ</Link>
-                      <Link>DELETE</Link>
+                      <Link
+                        //! adding one functionality to delete the user data from the data base
+                        onClick={() => {
+                          axios
+                            .delete(`http://localhost:3000/Users/${id}`)
+                            .then(
+                              (d) => {
+                                console.log(d);
+                                //! manually we want to reload the webpage to run the useEffect again ( to fetch the data again from database ) after component get mounted.
+                                window.location.reload();
+                              },
+                              (e) => console.log(e)
+                            );
+                        }}
+                      >
+                        DELETE
+                      </Link>
                     </td>
                   </tr>
                 </tbody>
