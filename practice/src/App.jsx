@@ -20,6 +20,7 @@ function App() {
           <Route path='/todoForm' element={<TodoForm />} />
           <Route path='/userlist' element={<User />} />
           <Route path='/create' element={<Create />} />
+          {/* route for dynamic routing  */}
           <Route path='/update/:id' element={<Update />} />
           <Route path='/read/:id' element={<Read />} />
         </Routes>
