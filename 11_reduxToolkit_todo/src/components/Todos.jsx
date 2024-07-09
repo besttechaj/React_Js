@@ -5,11 +5,19 @@ const Todos = () => {
   // fetching the data from the store
   const todos = useSelector((state) => state.todos);
 
+  const dispatch = useDispatch();
   return (
     <div>
       <h1>list all todo</h1>
       <br />
-      {todos.map((v, i) => {})}
+      {todos.map((v, i) => (
+        <React.Fragment key={i}>
+          <li key={v.id}>
+            {v.text}
+            <button onClick={() => dispatch(removeTodo(v.id))}>delete</button>
+          </li>
+        </React.Fragment>
+      ))}
     </div>
   );
 };
