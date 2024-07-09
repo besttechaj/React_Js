@@ -14,10 +14,14 @@ function App() {
     <>
       <TodoContextProvider value={{}}>
         <Routes>
+          {/* //* welcome page accessible to all  */}
           <Route path='/' element={<Home />} />
+          {/* //* users  */}
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/todoForm' element={<TodoForm />} />
+
+          {/* //* ONLY ACCESSIBLE BY ADMIN  */}
           <Route path='/userlist' element={<User />} />
           <Route path='/create' element={<Create />} />
           {/* route for dynamic routing  */}

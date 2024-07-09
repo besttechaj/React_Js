@@ -1,6 +1,4 @@
-import React from 'react';
-
-export default function App() {1 3444
+export default function App() {
   return (
     <div>
       <h1>Welcome to redux tutorials</h1>
