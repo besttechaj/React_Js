@@ -1,0 +1,23 @@
+.outer {
+  display: flex;
+  flex-direction: column;
+  background-color: #a3b3da;
+}
+
+.outer > h1 {
+  text-align: center;
+}
+
+.inner {
+  background-color: black;
+  color: white;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 0.5rem;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
