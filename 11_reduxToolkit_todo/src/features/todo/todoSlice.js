@@ -17,10 +17,12 @@ export const todoSlice = createSlice({
         text: action.payload,
       };
       console.log(todo);
+      //* In contextAPI our state is not preserved hence first we need to take an array then spread the data in the array and perform some operation but in redux, state are preserved hence directly we are performing the operation on state.
       state.todos.push(todo);
     },
     removeTodo: (state, action) => {
       console.log('running removeTodo: ', state, action);
+      //* In contextAPI our state is not preserved hence first we need to take an array then spread the data in the array and perform some operation but in redux, state are preserved hence directly we are performing the operation on state.
       state.todos = state.todos.filter((ele) => ele.id !== action.payload);
     },
   },
