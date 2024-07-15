@@ -1,6 +1,7 @@
 import conf from '../conf/conf';
-
 import { Client, Account, ID } from 'appwrite';
+//! NOTE: PLEASE REFER APP_WRITE DOCUMENTATION TO UNDERSTAND THE CONNECTION
+
 //! defining class: AuthService
 export class AuthService {
   //* below are the logic to connect with the database and backend template
