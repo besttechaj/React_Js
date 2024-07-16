@@ -127,7 +127,6 @@ class DatabaseService {
   }
 }
 
-4 27
 
 const service = new DatabaseService();
 
