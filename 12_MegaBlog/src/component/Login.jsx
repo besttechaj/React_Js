@@ -21,6 +21,7 @@ const Login = () => {
       //* if user is logged-in
       if (session) {
         const userData = await auth_service.getCurrentUser();
+        //* updating the store
         if (userData) dispatch(authLogin(userData));
         navigate('/');
       } else {
@@ -40,7 +41,7 @@ const Login = () => {
         <br />
         <p>{error && <span>{error}</span>}</p>
         <br />
-        {/* //! giving our own method to handle submit  */}
+        {/* //* giving our own method to handle submit, handleSubmit is an event  */}
         <form onSubmit={handleSubmit(login)}>
           <div>
             <div>
