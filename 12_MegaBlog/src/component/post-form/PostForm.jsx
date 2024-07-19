@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, Input, RTE, Select } from '..';
-import appwriteService from '../../appwrite/config';
+import { Button, Input, RTE, Select } from '../index';
+import appwriteService from '../../appwriteServices/databaseService';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 export default function PostForm({ post }) {
   const { register, handleSubmit, watch, setValue, control, getValues } =
     useForm({
+      //* user re-directed to this page to create a new post or to edit an existing post hence therefore using conditional rendering
       defaultValues: {
         title: post?.title || '',
         slug: post?.$id || '',
@@ -19,30 +20,45 @@ export default function PostForm({ post }) {
     });
 
   const navigate = useNavigate();
-  const userData = useSelector((state) => state.auth.userData);
+  const userData = useSelector((state) => {
+    console.log(state);
+    console.log(state.auth);
+    return state.auth.userData;
+  });
 
   const submit = async (data) => {
+    //* if post is true, updating the details
     if (post) {
+      console.log(post);
+      console.log('data postform comp: ', data);
       const file = data.image[0]
         ? await appwriteService.uploadFile(data.image[0])
         : null;
 
+      //* before uploading the new file, delete the existing file
       if (file) {
         appwriteService.deleteFile(post.featuredImage);
       }
 
+      //* updating the post
       const dbPost = await appwriteService.updatePost(post.$id, {
         ...data,
+        //* overwriting the field
         featuredImage: file ? file.$id : undefined,
       });
-
+      //* redirecting user
       if (dbPost) {
+        console.log(dbPost);
         navigate(`/post/${dbPost.$id}`);
       }
+
+      //* when we don't have post
     } else {
+      console.log(data);
       const file = await appwriteService.uploadFile(data.image[0]);
 
       if (file) {
+        console.log(data);
         const fileId = file.$id;
         data.featuredImage = fileId;
         const dbPost = await appwriteService.createPost({
@@ -58,12 +74,16 @@ export default function PostForm({ post }) {
   };
 
   const slugTransform = useCallback((value) => {
+    console.log(value);
     if (value && typeof value === 'string')
-      return value
-        .trim()
-        .toLowerCase()
-        .replace(/[^a-zA-Z\d\s]+/g, '-')
-        .replace(/\s/g, '-');
+      return (
+        value
+          .trim()
+          .toLowerCase()
+          //* regex to replace empty space with "-"
+          .replace(/[^a-zA-Z\d\s]+/g, '-')
+          .replace(/\s/g, '-')
+      );
 
     return '';
   }, []);

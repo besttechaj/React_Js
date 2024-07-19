@@ -4,7 +4,8 @@ import { Controller } from 'react-hook-form';
 const RTE = ({ name, control, label, defaultValue = '' }) => {
   return (
     <div>
-      {label && <label>{label}</label>}
+      {label ? <label>{label}</label> : 'unknown_label'}
+      {label}
       <br />
       <br />
       <Controller

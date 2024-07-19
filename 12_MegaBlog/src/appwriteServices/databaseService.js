@@ -127,7 +127,6 @@ class DatabaseService {
   }
 }
 
-
 const service = new DatabaseService();
 
 export default service;
