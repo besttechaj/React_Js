@@ -5,7 +5,7 @@ import { Client, Databases, Storage, ID, Query } from 'appwrite';
 
 //! Defining class
 class DatabaseService {
-  Client = new Client();
+  client = new Client();
 
   databases;
   bucket;

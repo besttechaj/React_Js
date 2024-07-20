@@ -15,6 +15,7 @@ function AllPosts() {
       <Container>
         <div className='flex flex-wrap'>
           {posts.map((post) => (
+            // due to appWrite, we are using $id instead of id
             <div key={post.$id} className='p-2 w-1/4'>
               <PostCard {...post} />
             </div>

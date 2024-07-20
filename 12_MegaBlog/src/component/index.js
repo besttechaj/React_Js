@@ -7,9 +7,11 @@ import Login from './Login';
 import Input from './Input';
 import RTE from './RTE';
 import Signup from './Signup';
-import Post from './Post';
-import PostForm from './post-form/PostForm';
+import Post from '../pages/Post.jsx';
+import PostForm from './post-form/PostForm.jsx';
 import PostCard from './PostCard';
+import AuthLayout from './AuthLayout';
+import Select from './Select.jsx';
 export {
   Header,
   Footer,
@@ -22,5 +24,7 @@ export {
   Signup,
   Post,
   PostForm,
-  PostCard
+  PostCard,
+  AuthLayout,
+  Select
 };

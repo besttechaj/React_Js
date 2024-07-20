@@ -1,5 +1,4 @@
 //? This file is specially to import environment variables
-
 const conf = {
   //! TO IMPORT THE ENV VAR IN VITE: import.meta.env.name
   appwriteUrl: String(import.meta.env.VITE_APPWRITE_URL),
@@ -10,4 +9,3 @@ const conf = {
 };
 
 export default conf;
-

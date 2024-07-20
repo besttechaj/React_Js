@@ -16,7 +16,7 @@ const LogoutBtn = () => {
   console.log('logout component');
   console.log(auth_service);
   console.log(logout);
-  return <button>LOGOUT</button>;
+  return <button onClick={logoutHandler}>LOGOUT</button>;
 };
 
 export default LogoutBtn;
