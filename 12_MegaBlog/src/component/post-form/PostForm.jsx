@@ -23,7 +23,7 @@ export default function PostForm({ post }) {
   const userData = useSelector((state) => {
     console.log(state);
     console.log(state.auth);
-    return state.auth.userData;
+    return state.authSlice.userData;
   });
 
   const submit = async (data) => {

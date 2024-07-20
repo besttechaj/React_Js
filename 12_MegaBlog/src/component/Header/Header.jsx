@@ -1,6 +1,7 @@
 import { Container, LogoutBtn } from '../index.js';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import './Header.css';
 const Header = () => {
   const authStatus = useSelector((state) => {
     console.log(state);
@@ -41,8 +42,8 @@ const Header = () => {
     <header>
       <Container>
         <nav>
-          <div>logo</div>
-          <div>
+          <div className='cont1'>This is a logo</div>
+          <div className='cont2'>
             <ul>
               {navItems.map((item, i) =>
                 item.active ? (

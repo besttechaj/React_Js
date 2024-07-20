@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import auth_service from './appwriteServices/Auth_Service';
 import { login, logout } from './Store/authSlice.js';
 import { Header, Footer } from './component/index.js';
+import { Outlet } from 'react-router-dom';
 const App = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -28,9 +29,9 @@ const App = () => {
         <Footer />
       </div>
       {/* //todo */}
-      {/* <main>
-        <Outlet/>
-      </main> */}
+      <main>
+        <Outlet />
+      </main>
     </>
   ) : null;
 };

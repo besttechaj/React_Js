@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import appwriteService from '../appwriteServices/databaseService';
 const PostCard = ({ $id, title, featuredImage }) => {
+  console.log('running post card comp**************');
   return (
     <Link to={`/post/${$id}`}>
       <div>

@@ -8,7 +8,7 @@ function Protected({ children, authentication = true }) {
 
   const authStatus = useSelector((state) => {
     console.log(state);
-    return state.auth.status;
+    return state.authSlice.status;
   });
 
   useEffect(() => {

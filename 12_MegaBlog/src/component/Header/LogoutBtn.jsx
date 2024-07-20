@@ -6,6 +6,7 @@ const LogoutBtn = () => {
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
+    console.log('running logout handler');
     auth_service
       .logout()
       .then(() => {
