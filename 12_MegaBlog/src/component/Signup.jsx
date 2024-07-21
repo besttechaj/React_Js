@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../Store/authSlice';
 import { Button, Input } from './index';
@@ -18,6 +18,7 @@ const SignUp = () => {
     setError('');
     try {
       const userData = await auth_service.createAccount(data);
+      console.log(userData);
       //* if user is logged-in
       if (userData) {
         const userData = await auth_service.getCurrentUser();

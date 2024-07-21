@@ -17,7 +17,9 @@ const Login = () => {
     // Initially always make the error field empty
     setError('');
     try {
+      console.log('running try block');
       const session = await auth_service.login(data);
+      console.log(session);
       //* if user is logged-in
       if (session) {
         const userData = await auth_service.getCurrentUser();

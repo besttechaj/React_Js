@@ -20,7 +20,9 @@ export class AuthService {
   //* signup
   async createAccount({ email, password, name }) {
     try {
-      const userAccount = await this.account(
+      console.log(this);
+      console.log(this.account);
+      const userAccount = await this.account.create(
         ID.unique(),
         email,
         password,
@@ -28,9 +30,13 @@ export class AuthService {
       );
 
       if (userAccount) {
+        console.log(userAccount);
         //call another method: calling login
         this.login({ email, password });
       } else {
+        console.log(
+          'no user account found. hence cannot sent forward to generate session'
+        );
         return userAccount;
       }
     } catch (error) {
@@ -41,7 +47,17 @@ export class AuthService {
 
   //* login
   async login({ email, password }) {
-    await this.account.createEmailSession(email, password);
+    try {
+      console.log(typeof(email), password);
+      let emailSession = await this.account.createEmailPasswordSession(
+        email,
+        password
+      );
+      console.log(emailSession);
+      return emailSession;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   //* To get the details of current user's account

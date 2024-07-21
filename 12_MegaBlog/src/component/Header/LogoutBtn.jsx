@@ -15,8 +15,6 @@ const LogoutBtn = () => {
       .catch((err) => console.log(err));
   };
   console.log('logout component');
-  console.log(auth_service);
-  console.log(logout);
   return <button onClick={logoutHandler}>LOGOUT</button>;
 };
 

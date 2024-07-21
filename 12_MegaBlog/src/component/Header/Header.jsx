@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import './Header.css';
 const Header = () => {
   const authStatus = useSelector((state) => {
-    console.log(state);
     console.log(state.authSlice.status);
     return state.authSlice.status;
   });
