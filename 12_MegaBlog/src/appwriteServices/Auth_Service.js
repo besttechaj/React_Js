@@ -6,7 +6,7 @@ import { Client, Account, ID } from 'appwrite';
 export class AuthService {
   //* below are the logic to connect with the database and backend template
   client = new Client();
-
+  account;
   constructor() {
     this.client
       .setEndpoint(conf.appwriteUrl) //your api end point
@@ -15,13 +15,13 @@ export class AuthService {
     this.account = new Account(this.client);
   }
 
-  //! defining methods inside class hence we can call them using class name whenever there is a need.
+  //! Defining Methods:  class AuthService
+  //hence we can call them using class name whenever there is a need.
 
-  //* signup
+  //* signup: creating a new account
   async createAccount({ email, password, name }) {
     try {
-      console.log(this);
-      console.log(this.account);
+      // sending req to the backend
       const userAccount = await this.account.create(
         ID.unique(),
         email,
@@ -29,14 +29,16 @@ export class AuthService {
         name
       );
 
+      // if the account is successfully created
       if (userAccount) {
         console.log(userAccount);
-        //call another method: calling login
-        this.login({ email, password });
+        //Since the account is created successfully, go to login with credentials  and logged-in the user.
+        return this.login({ email, password });
       } else {
         console.log(
           'no user account found. hence cannot sent forward to generate session'
         );
+        // else check whatever value you got, it can be null
         return userAccount;
       }
     } catch (error) {
@@ -48,35 +50,48 @@ export class AuthService {
   //* login
   async login({ email, password }) {
     try {
-      console.log(typeof(email), password);
+      console.log(typeof email, password);
+      // It will take user's email and password to create a session else it will throw error
       let emailSession = await this.account.createEmailPasswordSession(
         email,
         password
       );
-      console.log(emailSession);
+      console.log(`created session successfully`, emailSession);
+      // returning the session
       return emailSession;
     } catch (error) {
-      console.log(error);
+      console.log(`unable to create session after logging-in due to `, error);
     }
   }
 
-  //* To get the details of current user's account
+  //* Checking whether we are successfully logged-in or not ?? To get the details of current user's account
   async getCurrentUser() {
     try {
-      console.log(this.account.client);
-      return await this.account.get();
+      let currentUserDetails = await this.account.get();
+      console.log(`current user details are as follows `, currentUserDetails);
+      return currentUserDetails;
     } catch (error) {
-      console.log(`AppwriteService:: getCurrentUser :: error `, error);
+      console.log(
+        `Unable to get the details of our current user due to `,
+        error
+      );
     }
+    // if nothing matches then return null
     return null;
   }
 
-  //* logout
+  //* logout/delete session: to delete your current session
   async logout() {
     try {
-      await this.account.deleteSessions();
+      //  delete the current session
+      let logoutDetails = await this.account.deleteSessions();
+      console.log(`logout details`, logoutDetails);
+      return logoutDetails;
     } catch (error) {
-      console.log(`AppwriteService:: logout:: error `, error);
+      console.log(
+        `Unable to delete session or logout the current user due to `,
+        error
+      );
     }
   }
 }

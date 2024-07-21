@@ -7,6 +7,7 @@ header {
 nav {
   background-color: pink;
   display: flex;
+  height: 3rem;
 }
 
 .cont1 {
@@ -20,15 +21,23 @@ nav {
 .cont2 {
   background-color: green;
   width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cont2 > ul {
+  width: 100%;
+  border: 2px solid red;
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
 }
 
-.cont2 > ul > li{
+.cont2 > ul > li {
   text-decoration: none;
   list-style-type: none;
+}
 
+.cont2 > ul > li > button {
+  font-size: 1rem;
 }

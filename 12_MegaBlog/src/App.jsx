@@ -24,7 +24,6 @@ const App = () => {
   }, []);
   return !loading ? (
     <>
-      <h1>logged in</h1>
       <div>
         <Header />
         <Footer />
