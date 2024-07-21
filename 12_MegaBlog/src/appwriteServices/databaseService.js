@@ -16,53 +16,64 @@ class DatabaseService {
       .setProject(conf.appwriteProjectId);
 
     this.databases = new Databases(this.client);
+    // bucket or storage :: same
     this.bucket = new Storage(this.client);
   }
 
   //* create Post
   async createPost({ title, slug, content, featuredImage, status, userId }) {
     try {
-      return await this.databases.createDocument(
+      let documentCreated = await this.databases.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
-        slug,
+        slug, // document id :: slug
         { title, content, featuredImage, status, userId }
       );
+      console.log('creation of document is successfully done', documentCreated);
+      //returning created document
+      return documentCreated;
     } catch (error) {
-      console.log(`AppwriteService:: createPost:: error `, error);
+      console.log(`Unable to create a new post due to `, error);
     }
   }
 
   //* update post
+  // slug :: document id
   async updatePost(slug, { title, content, featuredImage, status }) {
     try {
-      return await this.databases.updateDocument(
+      let updatedDocument = await this.databases.updateDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         slug,
         { title, content, featuredImage, status }
       );
+      console.log('document is successfully updated ', updatedDocument);
+      return updatedDocument;
     } catch (error) {
-      console.log(`AppwriteService:: updatePost:: error `, error);
+      console.log(`Unable to update the document due to `, error);
     }
   }
 
   //* delete post
+  // slug :: document id
   async deletePost(slug) {
     try {
-      await this.databases.deleteDocument(
+      let deletedDocument = await this.databases.deleteDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         slug
       );
+      console.log('Successfully deleted document', deletedDocument);
+      // returning "true" if the document is deleted
       return true; //successfully deleted
     } catch (error) {
-      console.log(`AppwriteService:: deletePost:: error `, error);
+      console.log(`Unable to delete the document due to `, error);
       return false;
     }
   }
 
   //* to get a particular document
+  // slug :: document id
   async getPost(slug) {
     try {
       return await this.databases.getDocument(
@@ -71,12 +82,16 @@ class DatabaseService {
         slug
       );
     } catch (error) {
-      console.log(`AppwriteService:: getPost:: error `, error);
+      console.log(
+        `Unable to get the specified document's slug(id) due to `,
+        error
+      );
       return false;
     }
   }
 
   //* to get documents based on queries ( like whose status is active )
+  // to use query, it is mandatory to specific index in backend
   async getPosts(queries = [Query.equal('status', 'active')]) {
     try {
       return await this.databases.listDocuments(
