@@ -5,11 +5,14 @@ import appwriteService from '../appwriteServices/databaseService.js';
 function AllPosts() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {}, []);
-  appwriteService.getPosts([]).then((posts) => {
-    if (posts) {
-      setPosts(posts.documents);
-    }
-  });
+  appwriteService.getPosts([]).then(
+    (posts) => {
+      if (posts) {
+        setPosts(posts.documents);
+      }
+    },
+    (err) => console.log(`unable to get posts due to`, err)
+  );
   return (
     <div className='w-full py-8'>
       <Container>

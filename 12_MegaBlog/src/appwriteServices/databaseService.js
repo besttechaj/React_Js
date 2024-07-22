@@ -100,7 +100,7 @@ class DatabaseService {
         queries
       );
     } catch (error) {
-      console.log(`AppwriteService:: getPostsBasedOnQueries:: error `, error);
+      console.log(`Unable to get posts due to `, error);
       return false;
     }
   }
