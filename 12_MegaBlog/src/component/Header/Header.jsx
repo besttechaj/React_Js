@@ -3,9 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './Header.css';
 const Header = () => {
-
-//! BUG: UNWANTED REQ ON ADD-POST
-
+  
 
   //* fetching the status from store using useSelector in redux
   const authStatus = useSelector((state) => {
