@@ -1,0 +1,20 @@
+.inputComponent {
+  border: 2px solid red;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.inputComponent > label {
+  background-color: pink;
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.inputComponent > input {
+  background-color: green;
+  width: 100%;
+  font-size: 1.2rem;
+}
