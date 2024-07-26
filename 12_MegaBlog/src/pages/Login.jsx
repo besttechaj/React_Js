@@ -1,5 +1,5 @@
-import React from 'react';
-import { Login as loginComponent } from '../component/index';
+import './Login.css';
+import { loginComponent } from '../component/index';
 function Login() {
   return (
     <div className='py-8'>

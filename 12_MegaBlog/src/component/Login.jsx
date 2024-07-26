@@ -5,6 +5,7 @@ import { Button, Input } from './index';
 import { useDispatch } from 'react-redux';
 import auth_service from '../appwriteServices/Auth_Service';
 import { useForm } from 'react-hook-form';
+import './css/Login.css';
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -34,8 +35,8 @@ const Login = () => {
     }
   };
   return (
-    <div>
-      <div>
+    <div className='login_outer'>
+      <div className='login_inner'>
         <h2>Sign in to your account</h2>
         <h1>
           Don't have an account?<Link to='/signup'>SignUp</Link>
@@ -76,7 +77,9 @@ const Login = () => {
                   required: true,
                 })}
               />
-              <Button type='submit'>Sign in</Button>
+              <Button type='submit' className='signup_btn'>
+                Sign in
+              </Button>
             </div>
           </div>
         </form>

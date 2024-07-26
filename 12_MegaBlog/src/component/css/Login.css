@@ -1,0 +1,21 @@
+.login_outer {
+  background-color: yellow;
+  width: 40%;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  border-radius: 10px;
+}
+
+.login_inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.login_inner > h2 {
+  font-size: 1.3rem;
+}
+
+.login_inner > h1 {
+  font-size: 1.3rem;
+}
