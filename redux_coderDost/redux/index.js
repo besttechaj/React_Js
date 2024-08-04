@@ -1,32 +1,70 @@
+//! NON-SYNCHRONOUS OPERATIONS ...... please go through index2.js before reading it
+import axios from 'axios';
 import { createStore, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
 
 //* defining reducer
 const reducer = (state = { amount: 1 }, action) => {
   switch (action.type) {
+    case 'INIT':
+      console.log(action.payload);
+      return { amount: action.payload };
     case 'INCREMENT':
-      // mutable object : wrong way to update state.. it will change the previous state's value with the new state value
-      //! DON'T DO LIKE IT state.amount = state.amount + 1;
-      // making object as immutable which means creating another copy of previous state's value hence we are not changing the previous value of the object and creating another state for new value. Below we are creating a new object and taking reference of previous object
       return { amount: state.amount + 1 };
 
+    case 'DECREMENT':
+      return { amount: state.amount - 1 };
+
+    case 'INCREMENT_BY_AMOUNT':
+      return { amount: state.amount + action.payload };
     default:
       return state;
   }
 };
 
 //* creating store
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(logger.default));
 
 const history = [];
 
-//* store.subscribe(): this method will run whenever there is a change in state
-store.subscribe(() => {
-  //* store.getState(): to get the global state
-  history.push(store.getState());
-  console.log(history);
-});
+//* Async api call
 
-setInterval(() => {
-  //* dispatch is used to trigger/ invoke the reducer function
-  store.dispatch({ type: 'INCREMENT' });
-}, 3000);
+async function getUser() {
+  let res = await axios.get(`http://localhost:3000/account`);
+  console.log(res.data);
+}
+getUser();
+
+//! ACTIONS CREATORs
+
+function increment() {
+  return { type: 'INCREMENT' };
+}
+
+function decrement() {
+  return { type: 'DECREMENT' };
+}
+
+function incrementByAmount(value) {
+  return { type: 'INCREMENT_BY_AMOUNT', payload: value };
+}
+
+// setInterval(() => {
+//   store.dispatch(increment());
+// }, 5000);
+
+// setTimeout(() => {
+//   store.dispatch(decrement());
+// }, 10000);
+
+// setTimeout(() => {
+//   store.dispatch(incrementByAmount(10));
+// }, 10000);
+
+function init(value) {
+  return { type: 'INIT', payload: value };
+}
+
+setTimeout(() => {
+  store.dispatch(init(500));
+}, 5000);
