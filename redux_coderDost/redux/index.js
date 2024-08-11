@@ -1,5 +1,6 @@
 //! NON-SYNCHRONOUS OPERATIONS ...... please go through index2.js before reading it
 import axios from 'axios';
+import { type } from 'os';
 import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 // middleware for redux
@@ -29,15 +30,6 @@ const store = createStore(reducer, applyMiddleware(logger.default, thunk));
 
 const history = [];
 
-//* Async api call
-
-// async function getUser() {
-//   // destructuring data
-//   let { data } = await axios.get(`http://localhost:3000/account/1`);
-//   console.log(data);
-// }
-// getUser();
-
 //! ACTIONS CREATORs
 
 function increment() {
@@ -64,18 +56,21 @@ function incrementByAmount(value) {
 //   store.dispatch(incrementByAmount(10));
 // }, 10000);
 
-//! problem: action creators's fun are used to trigger the dispatch function immediately, they work in synchronous manner since we are making the action creator's fun as async which is returning a promise hence it will throw you an error. Whenever we dispatch something in redux, it will immediately dispatch and trigger the reducer function. there is solution in redux for that we can stop the dispatch function for sometime until promise get resolve or rejected and then we can run the dispatch function. So to do this we  may need to add middleware to run the dispatching function after some time  such as 'redux-thunk' middleware to handle dispatching functions. Here redux middleware (redux-thunk) will give you 2 parameter that is dispatch(//to call it whenever you want to run it) and other is getState function
-async function init(dispatch, getState) {
-  try {
-    console.log(getState);
-    let { data } = await axios.get(`http://localhost:3000/account/1`);
-    dispatch({ type: 'INIT', payload: data.amount });
-  } catch (error) {
-    console.log('error is: ', error);
-  }
+//! problem: action creators's fun are used to trigger the dispatch function immediately, they work in synchronous manner since we are making the action creator's fun as async which is returning a promise hence it will throw you an error. Whenever we dispatch something in redux, it will immediately dispatch and trigger the reducer function. there is solution in redux for that we can stop the dispatch function for sometime until promise get resolve or rejected and then we can run the dispatch function. So to do this we  may need to add middleware to run the dispatching function after some time  such as 'redux-thunk' middleware to handle dispatching functions. Here redux middleware (redux-thunk) will give you 2 parameter that is dispatch(//to call it whenever you want to run it) and other is getState: to access global state.
+function getUser(id) {
+  // we are returning another function which will take 2 arguments because we want to pass the "id" which is not possible with 3 arguments(dispatch, getState, id) hence we to do it we are performing async operation in return function
+  return async (dispatch, getState) => {
+    console.log('state is: ', getState);
+    let { data } = await axios.get(`http://localhost:3000/account/${id}`);
+    dispatch(initUser(data.amount));
+  };
+}
+
+function initUser(value) {
+  return { type: 'INIT', payload: value };
 }
 
 setTimeout(() => {
-  //! running the dispatch function
-  store.dispatch(init);
+  //! running the dispatch function.... we don't want to run the function during dispatch. hence we are passing a function inside dispatch which will be handle by redux-thunk middleware
+  store.dispatch(getUser(2));
 }, 5000);
