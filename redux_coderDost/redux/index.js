@@ -1,16 +1,14 @@
 //! NON-SYNCHRONOUS OPERATIONS ...... please go through index2.js before reading it
 import axios from 'axios';
-import { type } from 'os';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import logger from 'redux-logger';
 // middleware for redux
 import { thunk } from 'redux-thunk';
 
-//* defining reducer
-const reducer = (state = { amount: 1 }, action) => {
+//* defining reducer no.1
+const accountReducer = (state = { amount: 1 }, action) => {
   switch (action.type) {
     case 'INIT':
-      console.log(action.payload);
       return { amount: action.payload };
     case 'INCREMENT':
       return { amount: state.amount + 1 };
@@ -25,10 +23,27 @@ const reducer = (state = { amount: 1 }, action) => {
   }
 };
 
-//* creating store and passing reducers and middlewares which we are using
-const store = createStore(reducer, applyMiddleware(logger.default, thunk));
+//* defining reducer no.2
+const bonusReducer = (state = { points: 0 }, action) => {
+  switch (action.type) {
+    case 'INCREMENT_BY_AMOUNT':
+      // if the adding_amount >= 100, then add 1 bonus point
+      if (action.payload >= 100)
+        return { points: state.points + action.payload };
+    default:
+      return state;
+  }
+};
 
-const history = [];
+//* creating store and passing reducers and middlewares which we are using
+const store = createStore(
+  //* combining all the reducers
+  combineReducers({
+    reducerName_account: accountReducer,
+    reducerName_bonus: bonusReducer,
+  }),
+  applyMiddleware(logger.default, thunk)
+);
 
 //! ACTIONS CREATORs
 
@@ -72,5 +87,8 @@ function initUser(value) {
 
 setTimeout(() => {
   //! running the dispatch function.... we don't want to run the function during dispatch. hence we are passing a function inside dispatch which will be handle by redux-thunk middleware
-  store.dispatch(getUser(2));
+  // store.dispatch(getUser(2));
+  store.dispatch(incrementByAmount(20000));
 }, 5000);
+
+
