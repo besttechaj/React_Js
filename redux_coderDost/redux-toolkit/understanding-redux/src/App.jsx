@@ -1,44 +1,14 @@
-import { useState } from 'react';
 import Account from './components/Account';
 import Bonus from './components/Bonus';
 const App = () => {
-  const [account, setAccount] = useState({ amount: 0 });
-
-  const increment = () => {
-    setAccount({ amount: account.amount + 1 });
-  };
-
-  const decrement = () => {
-    setAccount({ amount: account.amount - 1 });
-  };
-
-  const incrementByAmount = (value) => {
-    setAccount({ amount: account.amount + value });
-  };
-
-  const [bonus, setBonus] = useState({ points: 0 });
-
-  const incrementBonus = () => {
-    setBonus({ points: bonus.points + 1 });
-  };
   return (
     <div className='App'>
       <h4>App</h4>
-      <h3>Current Amount: {account.amount}</h3>
-      <h3>Total Amount:{bonus.points} </h3>
+      <h3>Current Amount: {store.getState().reducerName_account.amount}</h3>
+      <h3>Total Amount:{store.getState().reducerName_bonus.points} </h3>
 
-      <Account
-        increment={increment}
-        decrement={decrement}
-        incrementByAmount={incrementByAmount}
-        account={account}
-        bonus={bonus}
-      ></Account>
-      <Bonus
-        incrementBonus={incrementBonus}
-        bonus={bonus}
-        account={account}
-      ></Bonus>
+      <Account></Account>
+      <Bonus></Bonus>
     </div>
   );
 };
