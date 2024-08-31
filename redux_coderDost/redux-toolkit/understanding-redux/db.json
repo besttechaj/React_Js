@@ -1,0 +1,30 @@
+{
+  "account": [
+    {
+      "id": 1,
+      "amount": 2000
+    },
+    {
+      "id": 2,
+      "amount": 300
+    },
+    {
+      "id": 3,
+      "amount": 50
+    }
+  ],
+  "bonus": [
+    {
+      "id": 1,
+      "points": 2000
+    },
+    {
+      "id": 2,
+      "points": 300
+    },
+    {
+      "id": 3,
+      "points": 50
+    }
+  ]
+}
